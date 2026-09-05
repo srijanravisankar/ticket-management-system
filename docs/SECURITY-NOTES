@@ -1,0 +1,3 @@
+### Security:
+
+- For logging in initially with Spring Security: Username - `user`, Password - `Using generated security password: ` search in terminal
