@@ -1,20 +1,46 @@
-### this file requires "REST HTTP Client" Extension
+# this file requires "REST HTTP Client" Extension
 
 @host = http://localhost:8080
-### paste the generated password after searching for "Using generated security password" in terminal
-@password = 7c42d074-d786-4451-be14-cb823fdac828
+@auth = Basic admin:admin
 
 
 ### Get all tickets
 GET {{host}}/api/tickets
-Authorization: Basic user:{{password}}
+Authorization: {{auth}}
 
 ### Create a ticket
 POST {{host}}/api/tickets
-Authorization: Basic user:{{password}}
+Authorization: {{auth}}
 Content-Type: application/json
 
 {
     "subject": "Cannot login in",
     "description": "Password reset email never arrives"
 }
+
+### Create a ticket with invalid subject
+POST {{host}}/api/tickets
+Authorization: {{auth}}
+Content-Type: application/json
+
+{
+    "subject": "hii",
+    "description": "Password reset email never arrives"
+}
+
+### Get one ticket
+GET {{host}}/api/tickets/1
+Authorization: {{auth}}
+
+### Get a ticket that does not exist
+GET {{host}}/api/tickets/100000
+Authorization: {{auth}}
+
+### Delete a ticket
+DELETE {{host}}/api/tickets/3
+Authorization: {{auth}}
+
+### Delete a ticket that does not exist
+DELETE {{host}}/api/tickets/100000
+Authorization: {{auth}}
+

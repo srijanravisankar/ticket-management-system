@@ -1,6 +1,8 @@
 package io.github.srijanravisankar.tms.ticket;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "tickets")
@@ -34,9 +36,12 @@ public class Ticket {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "Subject is required")
+    @Size(min = 5, max = 200)
     private String subject;
 
+    @NotBlank(message = "Description is required")
+    @Size(min = 20, max = 2000)
     @Column(length = 2000)
     private String description;
-
 }
