@@ -7,6 +7,26 @@ import jakarta.validation.constraints.Size;
 @Entity
 @Table(name = "tickets")
 public class Ticket {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @NotBlank(message = "Subject is required")
+    @Size(min = 5, max = 200)
+    private String subject;
+
+    @NotBlank(message = "Description is required")
+    @Size(min = 20, max = 2000)
+    @Column(length = 2000)
+    private String description;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private TicketStatus status = TicketStatus.OPEN;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private TicketPriority priority = TicketPriority.MEDIUM;
 
     public Long getId() {
         return id;
@@ -32,16 +52,19 @@ public class Ticket {
         this.description = description;
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    public TicketStatus getStatus() {
+        return status;
+    }
 
-    @NotBlank(message = "Subject is required")
-    @Size(min = 5, max = 200)
-    private String subject;
+    public void setStatus(TicketStatus status) {
+        this.status = status;
+    }
 
-    @NotBlank(message = "Description is required")
-    @Size(min = 20, max = 2000)
-    @Column(length = 2000)
-    private String description;
+    public TicketPriority getPriority() {
+        return priority;
+    }
+
+    public void setPriority(TicketPriority priority) {
+        this.priority = priority;
+    }
 }

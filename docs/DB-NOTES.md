@@ -1,13 +1,15 @@
 ### Database:
 
-- Docker command: `docker run --name my-postgres -e POSTGRES_PASSWORD=password -p 5432:5432 -d postgres:18`
-- Open psql: `docker exec -it my-postgres psql -U postgres`
+- Create Postgres container: `docker run --name my-postgres -e POSTGRES_PASSWORD=password -p 5432:5432 -d postgres:18`
+- Start Postgres container: `docker start my-postgres`
 - View databases in postgres: `docker exect -it my-postgres psql -U postgres -l`
 - View tables in postgres: `docker exec -it my-postgres psql -U postgres -d tms`
+- Open psql: `docker exec -it my-postgres psql -U postgres`
 - Exit psql: `\q`
+- View databases in psql: `\l`
+- List tables in a db: `\dt`
 - Create db: `CREATE DATABASE tms;`
 - Switch db: `\c tms`
-- List tables in a db: `\dt`
 - Clear terminal screen: `\! clear`
 - View columns and data types of a table: `\d tickets`
 - View all tickets information: `SELECT * FROM tickets;`
